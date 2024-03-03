@@ -25,7 +25,7 @@ export default function Header() {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingVertical: 20,
+        paddingVertical: 15,
         paddingHorizontal: 10,
         gap: 10,
         borderBottomWidth: 1,
