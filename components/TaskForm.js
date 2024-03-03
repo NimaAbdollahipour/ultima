@@ -51,6 +51,7 @@ export default function TaskForm(props) {
         backgroundColor: "white",
         borderRadius: 10,
         gap: 10,
+        width: "100%",
       }}
     >
       <TextInput
@@ -70,7 +71,7 @@ export default function TaskForm(props) {
         <TouchableOpacity
           onPress={props.close}
           style={{
-            backgroundColor: "gray",
+            backgroundColor: "lightgray",
             padding: 8,
             borderRadius: 4,
             flex: 1,
@@ -79,17 +80,11 @@ export default function TaskForm(props) {
             alignItems: "center",
           }}
         >
-          <Text
-            style={{
-              color: "white",
-            }}
-          >
-            Cancel
-          </Text>
+          <Text>Cancel</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
-            backgroundColor: "blue",
+            backgroundColor: "skyblue",
             padding: 8,
             borderRadius: 4,
             flex: 1,
@@ -99,13 +94,7 @@ export default function TaskForm(props) {
           }}
           onPress={props.task ? edit : add}
         >
-          <Text
-            style={{
-              color: "white",
-            }}
-          >
-            Save
-          </Text>
+          <Text>Save</Text>
         </TouchableOpacity>
       </View>
     </View>

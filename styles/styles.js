@@ -17,7 +17,7 @@ export default styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "left",
     flex: 1,
-    color: "white",
+    color: "black",
   },
   rowEnd: {
     display: "flex",
@@ -42,7 +42,8 @@ export default styles = StyleSheet.create({
   },
   input: {
     padding: 5,
-    backgroundColor: "lightgray",
+    borderColor: "lightgray",
+    borderWidth: 1,
     borderRadius: 5,
     display: "flex",
     flexDirection: "row",
@@ -53,7 +54,8 @@ export default styles = StyleSheet.create({
   },
   inputOne: {
     padding: 5,
-    backgroundColor: "lightgray",
+    borderColor: "lightgray",
+    borderWidth: 1,
     borderRadius: 5,
     display: "flex",
     flexDirection: "row",
@@ -65,7 +67,8 @@ export default styles = StyleSheet.create({
   },
   inputRow: {
     padding: 5,
-    backgroundColor: "lightgray",
+    borderColor: "lightgray",
+    borderWidth: 1,
     borderRadius: 5,
     display: "flex",
     flexDirection: "row",
@@ -77,7 +80,7 @@ export default styles = StyleSheet.create({
   },
   button: {
     padding: 5,
-    backgroundColor: "blue",
+    backgroundColor: "skyblue",
     borderRadius: 5,
     display: "flex",
     alignItems: "center",
@@ -87,7 +90,7 @@ export default styles = StyleSheet.create({
   },
   buttonOne: {
     padding: 5,
-    backgroundColor: "blue",
+    backgroundColor: "skyblue",
     borderRadius: 5,
     display: "flex",
     alignItems: "center",

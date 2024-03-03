@@ -23,7 +23,7 @@ export default function CompactForm() {
         body: taskBody,
         date: new Date(),
         done: false,
-        importance: 0,
+        priority: 2,
       };
       setTasks((previuos) => [newTask, ...previuos]);
       setTaskBody("");
@@ -33,7 +33,9 @@ export default function CompactForm() {
   return (
     <>
       {showCompact && (
-        <View style={styles.row}>
+        <View
+          style={[styles.row, { borderTopWidth: 1, borderColor: "#dddddd" }]}
+        >
           <TextInput
             value={taskBody}
             onChangeText={setTaskBody}

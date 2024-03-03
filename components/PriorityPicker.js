@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 const PriorityPicker = (props) => {
-  const [priority, setPriority] = useState(
-    props.priority ? props.priority : "med"
-  );
+  const [priority, setPriority] = useState(props.priority ? props.priority : 2);
   useEffect(() => {
     if (props.onChange) {
       props.onChange(priority);
@@ -14,22 +12,22 @@ const PriorityPicker = (props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => setPriority("low")}
-        style={priority === "low" ? styles.selectedLeft : styles.buttonLeft}
+        onPress={() => setPriority(1)}
+        style={priority === 1 ? styles.selected : styles.button}
       >
-        <Text style={priority === "low" && styles.text}>low</Text>
+        <Text style={priority === 1 && styles.text}>low</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => setPriority("med")}
-        style={priority === "med" ? styles.selected : styles.button}
+        onPress={() => setPriority(2)}
+        style={priority === 2 ? styles.selected : styles.button}
       >
-        <Text style={priority === "med" && styles.text}>med</Text>
+        <Text style={priority === 2 && styles.text}>med</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => setPriority("high")}
-        style={priority === "high" ? styles.selectedRight : styles.buttonRight}
+        onPress={() => setPriority(3)}
+        style={priority === 3 ? styles.selected : styles.button}
       >
-        <Text style={priority === "high" && styles.text}>high</Text>
+        <Text style={priority === 3 && styles.text}>high</Text>
       </TouchableOpacity>
     </View>
   );
@@ -40,36 +38,16 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     backgroundColor: "white",
-  },
-  text: {
-    color: "white",
+    borderColor: "lightgray",
+    borderWidth: 1,
+    borderRadius: 4,
+    padding: 2,
   },
   button: {
     paddingVertical: 8,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "lightgray",
-    flex: 1,
-  },
-  buttonLeft: {
-    paddingVertical: 8,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "lightgray",
-    borderBottomLeftRadius: 4,
-    borderTopLeftRadius: 4,
-    flex: 1,
-  },
-  buttonRight: {
-    paddingVertical: 8,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "lightgray",
-    borderBottomRightRadius: 4,
-    borderTopRightRadius: 4,
     flex: 1,
   },
   selected: {
@@ -77,27 +55,8 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "blue",
-    flex: 1,
-  },
-  selectedLeft: {
-    paddingVertical: 8,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "blue",
-    borderBottomLeftRadius: 4,
-    borderTopLeftRadius: 4,
-    flex: 1,
-  },
-  selectedRight: {
-    paddingVertical: 8,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "blue",
-    borderBottomRightRadius: 4,
-    borderTopRightRadius: 4,
+    backgroundColor: "skyblue",
+    borderRadius: 4,
     flex: 1,
   },
 });

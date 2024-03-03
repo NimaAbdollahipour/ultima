@@ -1,6 +1,12 @@
 import React, { useContext, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Text, View } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from "react-native";
 import Modal from "react-native-modal";
 import { TouchableOpacity } from "react-native";
 import TaskOptions from "./TaskOptions";
@@ -9,7 +15,7 @@ import { AppContext } from "../contexts/AppContext";
 import styles from "../styles/styles";
 import Menu from "./Menu";
 
-export default function Header({ navigation }) {
+export default function Header() {
   const { selectionMode } = useContext(AppContext);
   const [showMenu, setShowMenu] = useState(false);
   return (
@@ -21,8 +27,9 @@ export default function Header({ navigation }) {
         justifyContent: "space-between",
         alignItems: "center",
         padding: 10,
-        backgroundColor: "blue",
         gap: 10,
+        borderBottomWidth: 1,
+        borderColor: "#dddddd",
       }}
     >
       <Modal
@@ -34,21 +41,21 @@ export default function Header({ navigation }) {
           setShowMenu(false);
         }}
       >
-        <Menu
-          close={() => {
-            setShowMenu(false);
-          }}
-        />
+        <TouchableWithoutFeedback onPress={() => setShowMenu(false)}>
+          <View style={StyleSheet.absoluteFillObject}>
+            <Menu
+              close={() => {
+                setShowMenu(false);
+              }}
+            />
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
       <TouchableOpacity onPress={() => setShowMenu(true)}>
-        <MaterialIcons name="menu" size={24} color="white" />
+        <MaterialIcons name="menu" size={24} color="black" />
       </TouchableOpacity>
-      <Text style={styles.heading}>ULTIMA</Text>
-      {selectionMode ? (
-        <TaskOptions navigation={navigation} />
-      ) : (
-        <HeaderOption navigation={navigation} />
-      )}
+      <Text style={styles.heading}>Tasks</Text>
+      {selectionMode ? <TaskOptions /> : <HeaderOption />}
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import { FlatList } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import TaskCard from "./TaskCard";
 import { useContext } from "react";
 import { TaskContext } from "../contexts/TaskContext";
@@ -23,11 +23,23 @@ export default function TaskList() {
     });
   }
 
+  tasksToShow.sort((a, b) => b.priority - a.priority);
+
   return (
-    <FlatList
-      data={tasksToShow}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <TaskCard task={item} />}
-    />
+    <View style={styles.list}>
+      <FlatList
+        data={tasksToShow}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <TaskCard task={item} />}
+      />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  list: {
+    padding: 5,
+    flex: 1,
+    backgroundColor: "#f8f8f8",
+  },
+});

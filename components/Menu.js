@@ -1,4 +1,11 @@
-import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Dimensions,
+} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
@@ -64,7 +71,7 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    padding: 20,
+    padding: 10,
     justifyContent: "flex-start",
     alignItems: "flex-start",
     position: "absolute",
@@ -81,8 +88,15 @@ const styles = StyleSheet.create({
   nearRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 5,
     height: 32,
     gap: 4,
+  },
+  noFeedback: {
+    flex: 1,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
+    position: "absolute",
+    left: -10,
   },
 });

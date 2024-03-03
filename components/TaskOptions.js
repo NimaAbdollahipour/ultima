@@ -37,7 +37,7 @@ export default function TaskOptions() {
         <MaterialIcons
           name="delete"
           size={24}
-          color={selectedTasks.length === 0 ? "gray" : "white"}
+          color={selectedTasks.length === 0 ? "gray" : "black"}
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -47,11 +47,11 @@ export default function TaskOptions() {
         <MaterialIcons
           name="edit"
           size={24}
-          color={selectedTasks.length === 1 ? "white" : "gray"}
+          color={selectedTasks.length === 1 ? "black" : "gray"}
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={closeSelection}>
-        <MaterialIcons name="close" size={24} color="white" />
+        <MaterialIcons name="close" size={24} color="black" />
       </TouchableOpacity>
       <Modal
         title="Edit Task"
