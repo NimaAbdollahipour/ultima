@@ -15,19 +15,19 @@ const PriorityPicker = (props) => {
         onPress={() => setPriority(1)}
         style={priority === 1 ? styles.selected : styles.button}
       >
-        <Text style={priority === 1 && styles.text}>low</Text>
+        <Text style={priority === 1 && { color: "white" }}>low</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setPriority(2)}
         style={priority === 2 ? styles.selected : styles.button}
       >
-        <Text style={priority === 2 && styles.text}>med</Text>
+        <Text style={priority === 2 && { color: "white" }}>med</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setPriority(3)}
         style={priority === 3 ? styles.selected : styles.button}
       >
-        <Text style={priority === 3 && styles.text}>high</Text>
+        <Text style={priority === 3 && { color: "white" }}>high</Text>
       </TouchableOpacity>
     </View>
   );
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     borderColor: "lightgray",
     borderWidth: 1,
     borderRadius: 4,
-    padding: 2,
   },
   button: {
     paddingVertical: 8,
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "skyblue",
+    backgroundColor: "dodgerblue",
     borderRadius: 4,
     flex: 1,
   },

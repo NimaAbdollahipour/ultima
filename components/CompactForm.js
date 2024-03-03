@@ -2,13 +2,13 @@ import { TextInput, TouchableOpacity, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
 import { TaskContext } from "../contexts/TaskContext";
-import { today } from "../utils/dateFuncs";
 import styles from "../styles/styles";
 import { AppContext } from "../contexts/AppContext";
+import { saveTasks } from "../utils/dataService";
 
 export default function CompactForm() {
   const [taskBody, setTaskBody] = useState("");
-  const { setTasks } = useContext(TaskContext);
+  const { setTasks, tasks } = useContext(TaskContext);
   const { showCompact } = useContext(AppContext);
   function addTask() {
     if (taskBody.length > 1) {
@@ -27,6 +27,7 @@ export default function CompactForm() {
       };
       setTasks((previuos) => [newTask, ...previuos]);
       setTaskBody("");
+      saveTasks(tasks);
     }
   }
 
@@ -41,7 +42,7 @@ export default function CompactForm() {
             onChangeText={setTaskBody}
             style={styles.inputOne}
           />
-          <TouchableOpacity onPress={addTask}>
+          <TouchableOpacity onPress={addTask} style={{ padding: 8 }}>
             <MaterialIcons name="add-circle-outline" size={24} color="black" />
           </TouchableOpacity>
         </View>

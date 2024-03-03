@@ -21,10 +21,14 @@ export default function HeaderOption() {
           setShowForm(true);
           setShowCompact(false);
         }}
+        style={{ padding: 8 }}
       >
         <MaterialIcons name="add" size={24} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => setSelectionMode(true)}>
+      <TouchableOpacity
+        onPress={() => setSelectionMode(true)}
+        style={{ padding: 8 }}
+      >
         <MaterialIcons name="check-box" size={24} color="black" />
       </TouchableOpacity>
       <Modal

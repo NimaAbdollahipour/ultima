@@ -7,15 +7,17 @@ import CompactForm from "../components/CompactForm";
 import { TaskContext } from "../contexts/TaskContext";
 
 export default function Home() {
-  const { tasks, setTasks } = useContext(TaskContext);
-
+  const { tasks, setTasks, loaded, setLoaded } = useContext(TaskContext);
   useEffect(() => {
     loadTasks()
-      .then((loadedTasks) => setTasks(loadedTasks))
+      .then((loadedTasks) => {
+        setTasks(loadedTasks);
+        setLoaded(true);
+      })
       .catch(console.log("can not load"));
     return () => {
-      if (tasks.length > 0) {
-        saveTasks(tasks);
+      if (loaded) {
+        saveTasks(tasks).then(console.log("saved"));
       }
     };
   }, []);

@@ -6,6 +6,7 @@ import { TaskContext } from "../contexts/TaskContext";
 import Modal from "react-native-modal";
 import styles from "../styles/styles";
 import TaskForm from "./TaskForm";
+import { saveTasks } from "../utils/dataService";
 
 export default function TaskOptions() {
   const { selectedTasks, setSelectedTasks, tasks, setTasks } =
@@ -17,10 +18,12 @@ export default function TaskOptions() {
     setTasks((previous) =>
       [...previous].filter((task) => !selectedTasks.includes(task.id))
     );
+    saveTasks(tasks);
   }
 
   function editTask() {
     setShowForm(true);
+    saveTasks(tasks);
   }
 
   function closeSelection() {
@@ -33,6 +36,7 @@ export default function TaskOptions() {
       <TouchableOpacity
         disabled={selectedTasks.length === 0}
         onPress={deleteTask}
+        style={{ padding: 8 }}
       >
         <MaterialIcons
           name="delete"
@@ -43,6 +47,7 @@ export default function TaskOptions() {
       <TouchableOpacity
         disabled={selectedTasks.length !== 1}
         onPress={editTask}
+        style={{ padding: 8 }}
       >
         <MaterialIcons
           name="edit"
@@ -50,7 +55,7 @@ export default function TaskOptions() {
           color={selectedTasks.length === 1 ? "black" : "gray"}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={closeSelection}>
+      <TouchableOpacity onPress={closeSelection} style={{ padding: 8 }}>
         <MaterialIcons name="close" size={24} color="black" />
       </TouchableOpacity>
       <Modal

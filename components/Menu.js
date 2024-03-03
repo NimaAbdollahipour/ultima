@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { TaskContext } from "../contexts/TaskContext";
 import { getTomorrow } from "../utils/dateFuncs";
+import { clearTasks } from "../utils/dataService";
 
 export default function Menu(props) {
   const { setVisibleDate, showDone, setShowDone } = useContext(AppContext);
@@ -55,6 +56,9 @@ export default function Menu(props) {
           style={styles.nearRow}
         >
           <Text>All Tasks</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={clearTasks} style={styles.nearRow}>
+          <Text>Cleanup</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -6,16 +6,22 @@ export const TaskContext = createContext();
 export default function TaskProvider({ children }) {
   const [tasks, setTasks] = useState([]);
   const [selectedTasks, setSelectedTasks] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (tasks.length > 0) {
-      saveTasks(tasks);
-    }
+    saveTasks(tasks);
   }, [tasks]);
 
   return (
     <TaskContext.Provider
-      value={{ tasks, setTasks, selectedTasks, setSelectedTasks }}
+      value={{
+        tasks,
+        setTasks,
+        selectedTasks,
+        setSelectedTasks,
+        loaded,
+        setLoaded,
+      }}
     >
       {children}
     </TaskContext.Provider>

@@ -16,7 +16,6 @@ export default styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "left",
-    flex: 1,
     color: "black",
   },
   rowEnd: {

@@ -8,6 +8,7 @@ export default function AppProvider({ children }) {
   const [showDone, setShowDone] = useState(true);
   const [showCompact, setShowCompact] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
+
   return (
     <AppContext.Provider
       value={{
