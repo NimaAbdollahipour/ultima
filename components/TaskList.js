@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
   list: {
     padding: 5,
     flex: 1,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: "#f4f4f4",
   },
 });

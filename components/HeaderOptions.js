@@ -37,7 +37,12 @@ export default function HeaderOption() {
           setShowCompact(true);
         }}
       >
-        <TouchableWithoutFeedback onPress={() => setShowForm(false)}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            setShowForm(false);
+            setShowCompact(true);
+          }}
+        >
           <View
             style={[
               StyleSheet.absoluteFillObject,

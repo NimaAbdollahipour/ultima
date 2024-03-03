@@ -22,13 +22,7 @@ export default function Menu(props) {
 
   return (
     <View style={styles.modalContent}>
-      <TouchableOpacity
-        onPress={() => props.close()}
-        style={styles.closeButton}
-      >
-        <MaterialIcons name="close" size={24} color="black" />
-      </TouchableOpacity>
-      <View style={{ marginTop: 20 }}>
+      <View>
         <TouchableOpacity
           onPress={() => setShowDone((prev) => !prev)}
           style={styles.nearRow}
@@ -75,8 +69,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     position: "absolute",
-    top: -20,
-    left: -10,
+    top: 0,
+    left: 0,
     width: "50%",
     elevation: 5,
   },

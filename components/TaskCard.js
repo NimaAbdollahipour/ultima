@@ -148,8 +148,7 @@ const TaskCard = ({ task }) => {
       onPress={selectionMode ? toggleSelect : toggleDone}
       style={[
         styles.container,
-        isSelected() && styles.selected,
-        task.done && styles.done,
+        isSelected() ? styles.selected : task.done && styles.done,
       ]}
     >
       <MaterialIcons
@@ -164,8 +163,8 @@ const TaskCard = ({ task }) => {
             {task.date.toISOString().split("T")[0]}
           </Text>
           <Text style={styles.weekdayText}>{getWeekday(task.date)}</Text>
+          <Priority value={task.priority} />
         </View>
-        <Priority value={task.priority} />
       </View>
     </TouchableOpacity>
   );
@@ -178,6 +177,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     borderRadius: 5,
     marginBottom: 5,
+    backgroundColor: "white",
   },
   done: {
     backgroundColor: "skyblue",
@@ -195,8 +195,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flexDirection: "row",
-    justifyContent: "flex-start",
-    gap: 30,
+    justifyContent: "space-between",
   },
   dateText: {
     color: "gray",

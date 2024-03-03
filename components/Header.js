@@ -21,12 +21,12 @@ export default function Header() {
   return (
     <View
       style={{
-        height: 64,
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: 10,
+        paddingVertical: 20,
+        paddingHorizontal: 10,
         gap: 10,
         borderBottomWidth: 1,
         borderColor: "#dddddd",
@@ -42,7 +42,7 @@ export default function Header() {
         }}
       >
         <TouchableWithoutFeedback onPress={() => setShowMenu(false)}>
-          <View style={StyleSheet.absoluteFillObject}>
+          <View style={StyleSheet.absoluteFill}>
             <Menu
               close={() => {
                 setShowMenu(false);
