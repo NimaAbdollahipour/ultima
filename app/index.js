@@ -26,7 +26,6 @@ export default function Home() {
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <View style={{ flex: 1 }}>
-        <Header />
         <TaskList />
         <CompactForm />
       </View>

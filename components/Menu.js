@@ -31,34 +31,36 @@ export default function Menu(props) {
           <MaterialIcons
             name={showDone ? "visibility" : "visibility-off"}
             size={24}
-            color="black"
+            color="navy"
           />
-          <Text>{showDone ? "Hide Completed" : "Show Completed"}</Text>
+          <Text style={styles.buttonText}>
+            {showDone ? "Hide Completed" : "Show Completed"}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={deleteCompleted} style={styles.nearRow}>
-          <MaterialIcons name="remove-circle-outline" size={24} color="black" />
-          <Text>Clear Done</Text>
+          <MaterialIcons name="remove-circle-outline" size={24} color="navy" />
+          <Text style={styles.buttonText}>Clear Done</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setVisibleDate(new Date())}
           style={styles.nearRow}
         >
-          <Text>Today's Tasks</Text>
+          <Text style={styles.buttonText}>Today's Tasks</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setVisibleDate(getTomorrow())}
           style={styles.nearRow}
         >
-          <Text>Tomorrow's Tasks</Text>
+          <Text style={styles.buttonText}>Tomorrow's Tasks</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setVisibleDate(null)}
           style={styles.nearRow}
         >
-          <Text>All Tasks</Text>
+          <Text style={styles.buttonText}>All Tasks</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={clearTasks} style={styles.nearRow}>
-          <Text>Cleanup</Text>
+          <Text style={styles.buttonText}>Cleanup</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -96,5 +98,8 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height,
     position: "absolute",
     left: -10,
+  },
+  buttonText: {
+    color: "navy",
   },
 });

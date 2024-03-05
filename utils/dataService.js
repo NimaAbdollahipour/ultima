@@ -3,7 +3,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const loadTasks = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem("tasks");
-    console.log(jsonValue);
     return jsonValue !== null
       ? await JSON.parse(jsonValue, (key, value) => {
           if (key === "date") {

@@ -2,6 +2,7 @@
   "expo": {
     "name": "ultima",
     "slug": "ultima",
+    "scheme": "ultima-scheme",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -25,12 +24,14 @@
       "package": "com.nimaabdollahipour.ultima"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "extra": {
       "eas": {
         "projectId": "9527ea14-8fe2-4d60-9238-640aa59e7e20"
       }
-    }
+    },
+    "plugins": ["expo-router"]
   }
 }

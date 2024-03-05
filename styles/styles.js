@@ -13,10 +13,10 @@ export default styles = StyleSheet.create({
     flex: 1,
   },
   heading: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 22,
     textAlign: "left",
-    color: "black",
+    color: "navy",
+    fontWeight: "500",
   },
   rowEnd: {
     display: "flex",
@@ -79,7 +79,7 @@ export default styles = StyleSheet.create({
   },
   button: {
     padding: 5,
-    backgroundColor: "skyblue",
+    backgroundColor: "navy",
     borderRadius: 5,
     display: "flex",
     alignItems: "center",
@@ -89,7 +89,7 @@ export default styles = StyleSheet.create({
   },
   buttonOne: {
     padding: 5,
-    backgroundColor: "skyblue",
+    backgroundColor: "navy",
     borderRadius: 5,
     display: "flex",
     alignItems: "center",

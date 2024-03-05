@@ -23,7 +23,14 @@ export default function TaskList() {
     });
   }
 
-  tasksToShow.sort((a, b) => b.priority - a.priority);
+  function compareTasks(task1, task2) {
+    if (task1.date.getTime() !== task2.date.getTime()) {
+      return task1.date.getTime() - task2.date.getTime();
+    } else {
+      return task2.priority - task1.priority;
+    }
+  }
+  tasksToShow.sort(compareTasks);
 
   return (
     <View style={styles.list}>

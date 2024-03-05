@@ -17,19 +17,22 @@ export default function Header() {
       style={{
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
         alignItems: "center",
         paddingVertical: 10,
         paddingHorizontal: 10,
         gap: 10,
         borderBottomWidth: 1,
         borderColor: "#dddddd",
-        width: "100%",
+        marginTop: 20,
+        backgroundColor: "white",
+        justifyContent: "space-between",
       }}
     >
       <Modal
         title="Menu"
         visible={showMenu}
+        animationIn="bounce"
+        animationOut="bounce"
         onRequestClose={() => {
           setShowMenu(false);
         }}
@@ -56,7 +59,7 @@ export default function Header() {
           onPress={() => setShowMenu(true)}
           style={{ padding: 8 }}
         >
-          <MaterialIcons name="menu" size={24} color="black" />
+          <MaterialIcons name="menu" size={24} color="navy" />
         </TouchableOpacity>
         <Text style={styles.heading}>Tasks</Text>
       </View>

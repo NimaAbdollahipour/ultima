@@ -9,7 +9,7 @@ export default function Priority({ value }) {
   return (
     <View style={{ display: "flex", flexDirection: "row" }}>
       {stars.map((item) => (
-        <MaterialIcons name="star" size={24} color="#444" key={item} />
+        <MaterialIcons name="star" size={24} color="navy" key={item} />
       ))}
     </View>
   );
