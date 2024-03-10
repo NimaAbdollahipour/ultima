@@ -1,10 +1,12 @@
-import { TextInput, TouchableOpacity, View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { View } from "react-native";
 import { useContext, useState } from "react";
 import { TaskContext } from "../contexts/TaskContext";
 import styles from "../styles/styles";
 import { AppContext } from "../contexts/AppContext";
 import { saveTasks } from "../utils/dataService";
+import IconButton from "./common/IconButton";
+import Input from "./common/Input";
+import SmallIconButton from "./common/SmallIconButton";
 
 export default function CompactForm() {
   const [title, setTitle] = useState("");
@@ -34,17 +36,9 @@ export default function CompactForm() {
   return (
     <>
       {showCompact && (
-        <View
-          style={[styles.row, { borderTopWidth: 1, borderColor: "#dddddd" }]}
-        >
-          <TextInput
-            value={title}
-            onChangeText={setTitle}
-            style={styles.inputOne}
-          />
-          <TouchableOpacity onPress={addTask} style={{ padding: 8 }}>
-            <MaterialIcons name="add-circle-outline" size={24} color="navy" />
-          </TouchableOpacity>
+        <View style={styles.compactForm}>
+          <Input value={title} onChangeText={(val) => setTitle(val)} />
+          <SmallIconButton icon="add-circle-outline" onPress={addTask} />
         </View>
       )}
     </>

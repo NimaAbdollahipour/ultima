@@ -1,8 +1,12 @@
-import { Link, router, useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useContext } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { TaskContext } from "../../contexts/TaskContext";
 import { saveTasks } from "../../utils/dataService";
+import LabelValue from "../../components/common/LabelValue";
+import TextButton from "../../components/common/TextButton";
+import styles from "../../styles/styles";
+
 export default function TaskViewer() {
   const { id } = useLocalSearchParams();
   const { tasks } = useContext(TaskContext);
@@ -17,53 +21,13 @@ export default function TaskViewer() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.bold}>Title</Text>
-      <Text style={styles.text}>{task.title}</Text>
-      <Text style={styles.bold}>Description</Text>
-      <Text style={styles.text}>{task.description}</Text>
-      <Text style={styles.bold}>Priority</Text>
-      <Text style={styles.text}>{priorityValues[task.priority - 1]}</Text>
-      <Text style={styles.bold}>Date</Text>
-      <Text style={styles.text}>{task.date.toISOString().split("T")[0]}</Text>
-      <TouchableOpacity style={styles.button} onPress={deleteTask}>
-        <Text style={styles.buttonText}>Delete</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => router.push(`/task/edit/${id}`)}
-      >
-        <Text style={styles.buttonText}>Edit</Text>
-      </TouchableOpacity>
+    <View style={styles.details}>
+      <LabelValue label="Title" value={task.title} />
+      <LabelValue label="Description" value={task.description} />
+      <LabelValue label="Priority" value={priorityValues[task.priority - 1]} />
+      <LabelValue label="Date" value={task.date.toISOString().split("T")[0]} />
+      <TextButton text="delete" onPress={deleteTask} />
+      <TextButton text="edit" onPress={() => router.push(`/task/edit/${id}`)} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-    display: "flex",
-    gap: 10,
-  },
-  text: {
-    paddingHorizontal: 10,
-    marginBottom: 20,
-  },
-  bold: {
-    fontWeight: "bold",
-    paddingHorizontal: 10,
-  },
-  button: {
-    backgroundColor: "navy",
-    padding: 8,
-    borderRadius: 4,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: "white",
-    textAlign: "center",
-  },
-});

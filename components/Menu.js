@@ -1,20 +1,16 @@
-import {
-  TouchableOpacity,
-  Text,
-  View,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  Dimensions,
-} from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Switch, View, Text } from "react-native";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { TaskContext } from "../contexts/TaskContext";
 import { getTomorrow } from "../utils/dateFuncs";
 import { clearTasks } from "../utils/dataService";
+import TextButton from "./common/TextButton";
+import styles from "../styles/styles";
+import { ThemeContext } from "../contexts/ThemeContext";
 
-export default function Menu(props) {
+export default function Menu() {
   const { setVisibleDate, showDone, setShowDone } = useContext(AppContext);
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
   const { setTasks } = useContext(TaskContext);
 
   function deleteCompleted() {
@@ -22,84 +18,42 @@ export default function Menu(props) {
   }
 
   return (
-    <View style={styles.modalContent}>
-      <View>
-        <TouchableOpacity
-          onPress={() => setShowDone((prev) => !prev)}
-          style={styles.nearRow}
-        >
-          <MaterialIcons
-            name={showDone ? "visibility" : "visibility-off"}
-            size={24}
-            color="navy"
-          />
-          <Text style={styles.buttonText}>
-            {showDone ? "Hide Completed" : "Show Completed"}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={deleteCompleted} style={styles.nearRow}>
-          <MaterialIcons name="remove-circle-outline" size={24} color="navy" />
-          <Text style={styles.buttonText}>Clear Done</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setVisibleDate(new Date())}
-          style={styles.nearRow}
-        >
-          <Text style={styles.buttonText}>Today's Tasks</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setVisibleDate(getTomorrow())}
-          style={styles.nearRow}
-        >
-          <Text style={styles.buttonText}>Tomorrow's Tasks</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setVisibleDate(null)}
-          style={styles.nearRow}
-        >
-          <Text style={styles.buttonText}>All Tasks</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={clearTasks} style={styles.nearRow}>
-          <Text style={styles.buttonText}>Cleanup</Text>
-        </TouchableOpacity>
+    <View style={styles.menuContent}>
+      <TextButton
+        icon={showDone ? "visibility" : "visibility-off"}
+        onPress={() => setShowDone((prev) => !prev)}
+        text={showDone ? "hide completed" : "show completed"}
+        variant="menu"
+      />
+      <TextButton
+        icon="delete"
+        onPress={deleteCompleted}
+        text="clear done"
+        variant="menu"
+      />
+      <TextButton
+        onPress={() => setVisibleDate(new Date())}
+        text="today's tasks"
+        variant="menu"
+      />
+      <TextButton
+        onPress={() => setVisibleDate(getTomorrow())}
+        text="tomorrows's tasks"
+        variant="menu"
+      />
+      <TextButton
+        onPress={() => setVisibleDate(null)}
+        text="all tasks"
+        variant="menu"
+      />
+      <TextButton onPress={clearTasks} text="clean" variant="menu" />
+      <View style={styles.menuButton}>
+        <Switch
+          onValueChange={() => setDarkMode((prev) => !prev)}
+          value={darkMode}
+        />
+        <Text>Dark Mode</Text>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  modalContent: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 10,
-    padding: 10,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "50%",
-    elevation: 5,
-  },
-  closeButton: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-  },
-  nearRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 5,
-    height: 32,
-    gap: 4,
-  },
-  noFeedback: {
-    flex: 1,
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-    position: "absolute",
-    left: -10,
-  },
-  buttonText: {
-    color: "navy",
-  },
-});

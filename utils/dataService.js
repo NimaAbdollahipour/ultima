@@ -25,6 +25,24 @@ export const saveTasks = async (tasks) => {
   }
 };
 
+export const saveTheme = async (theme) => {
+  try {
+    await AsyncStorage.setItem("theme", JSON.stringify(theme));
+  } catch (error) {
+    console.error("Error saving theme:", error);
+  }
+};
+
+export const loadTheme = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem("theme");
+    return jsonValue !== null ? await JSON.parse(jsonValue) : [];
+  } catch (error) {
+    console.error("Error loading theme:", error);
+    return [];
+  }
+};
+
 export const clearTasks = async () => {
   try {
     await AsyncStorage.clear();

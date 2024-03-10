@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { View, SafeAreaView, StatusBar } from "react-native";
 import { saveTasks, loadTasks } from "../utils/dataService";
-import Header from "../components/Header";
 import TaskList from "../components/TaskList";
 import CompactForm from "../components/CompactForm";
 import { TaskContext } from "../contexts/TaskContext";

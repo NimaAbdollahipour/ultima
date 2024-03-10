@@ -1,59 +1,20 @@
 import React, { useContext, useState } from "react";
-import { TextInput, TouchableOpacity, View, Text } from "react-native";
+import { View } from "react-native";
 import { TaskContext } from "../contexts/TaskContext";
 import PriorityPicker from "./PriorityPicker";
-import DatePicker from "./DatePicker";
+import DatePicker from "./common/DatePicker";
 import { useRouter } from "expo-router";
-
-const styles = {
-  taskFormContainer: {
-    padding: 10,
-    gap: 10,
-    width: "100%",
-  },
-  input: {
-    padding: 5,
-    borderColor: "lightgray",
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderRadius: 5,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 40,
-    marginVertical: 5,
-  },
-  buttonContainer: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 5,
-  },
-  cancelButton: {
-    backgroundColor: "lightgray",
-    padding: 8,
-    borderRadius: 4,
-    flex: 1,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  saveButton: {
-    backgroundColor: "navy",
-    padding: 8,
-    borderRadius: 4,
-    flex: 1,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-};
+import TextButton from "./common/TextButton";
+import Input from "./common/Input";
+import styles from "../styles/styles";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function TaskForm(props) {
   const { setTasks } = useContext(TaskContext);
   const [title, setTitle] = useState(props.task ? props.task.title : "");
   const [date, setDate] = useState(props.task ? props.task.date : new Date());
   const router = useRouter();
+  const { darkMode } = useContext(ThemeContext);
   const [priority, setPriority] = useState(
     props.task ? props.task.priority : 2
   );
@@ -98,35 +59,39 @@ export default function TaskForm(props) {
   }
 
   return (
-    <View style={styles.taskFormContainer}>
-      <TextInput
-        multiline
-        numberOfLines={2}
-        value={title}
-        onChangeText={setTitle}
-        style={styles.input}
-        placeholder="task ..."
-      />
-      <TextInput
-        multiline
-        numberOfLines={3}
-        value={description}
-        onChangeText={setDescription}
-        style={styles.input}
-        placeholder="description ..."
-      />
-      <PriorityPicker
-        selected={priority}
-        onChange={(value) => setPriority(value)}
-      />
-      <DatePicker current={date} onChange={(value) => setDate(value)} />
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.saveButton}
+    <View style={darkMode ? styles.formContainerDark : styles.formContainer}>
+      <View style={styles.formItem}>
+        <Input
+          multiline
+          numberOfLines={1}
+          value={title}
+          onChangeText={setTitle}
+          placeholder="task ..."
+        />
+      </View>
+      <View style={styles.formItemDouble}>
+        <Input
+          multiline
+          numberOfLines={3}
+          value={description}
+          onChangeText={setDescription}
+          placeholder="description ..."
+        />
+      </View>
+      <View style={styles.formItem}>
+        <PriorityPicker
+          selected={priority}
+          onChange={(value) => setPriority(value)}
+        />
+      </View>
+      <View style={styles.formItemDouble}>
+        <DatePicker current={date} onChange={(value) => setDate(value)} />
+      </View>
+      <View style={styles.formItemDouble}>
+        <TextButton
           onPress={props.task ? edit : add}
-        >
-          <Text style={{ color: "white" }}>Save</Text>
-        </TouchableOpacity>
+          text={props.task ? "save changes" : "add"}
+        />
       </View>
     </View>
   );

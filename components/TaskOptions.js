@@ -1,17 +1,16 @@
-import { TouchableOpacity, View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
-import { useContext, useState } from "react";
+import { View } from "react-native";
+import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { TaskContext } from "../contexts/TaskContext";
 import styles from "../styles/styles";
 import { saveTasks } from "../utils/dataService";
 import { useRouter } from "expo-router";
+import IconButton from "./common/IconButton";
 
 export default function TaskOptions() {
   const { selectedTasks, setSelectedTasks, tasks, setTasks } =
     useContext(TaskContext);
-  const { setSelectionMode, setShowCompact } = useContext(AppContext);
-  const [showForm, setShowForm] = useState(false);
+  const { setSelectionMode } = useContext(AppContext);
   const router = useRouter();
   function deleteTask() {
     setTasks((previous) =>
@@ -22,9 +21,8 @@ export default function TaskOptions() {
   }
 
   function editTask() {
-    setShowForm(true);
-    saveTasks(tasks);
     setSelectionMode(false);
+    () => router.push("task/edit/" + selectedTasks);
   }
 
   function closeSelection() {
@@ -33,32 +31,22 @@ export default function TaskOptions() {
   }
 
   return (
-    <View style={styles.rowEnd}>
-      <TouchableOpacity
-        disabled={selectedTasks.length === 0}
+    <View style={styles.buttonRow}>
+      <IconButton
+        icon="delete"
         onPress={deleteTask}
-        style={{ padding: 8 }}
-      >
-        <MaterialIcons
-          name="delete"
-          size={24}
-          color={selectedTasks.length === 0 ? "gray" : "navy"}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity
+        disabled={selectedTasks.length === 0}
+      />
+      <IconButton
+        icon="edit"
+        onPress={editTask}
         disabled={selectedTasks.length !== 1}
-        onPress={() => router.push("task/edit/" + selectedTasks)}
-        style={{ padding: 8 }}
-      >
-        <MaterialIcons
-          name="edit"
-          size={24}
-          color={selectedTasks.length === 1 ? "navy" : "gray"}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={closeSelection} style={{ padding: 8 }}>
-        <MaterialIcons name="close" size={24} color="navy" />
-      </TouchableOpacity>
+      />
+      <IconButton
+        icon="close"
+        onPress={closeSelection}
+        disabled={selectedTasks.length !== 1}
+      />
     </View>
   );
 }
