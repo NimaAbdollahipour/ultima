@@ -8,7 +8,6 @@ import styles from "../styles/styles";
 export default function TaskList() {
   const { tasks } = useContext(TaskContext);
   const { showDone, visibleDate } = useContext(AppContext);
-
   let tasksToShow = tasks.filter((item) => {
     return showDone || !item.done;
   });
@@ -36,7 +35,6 @@ export default function TaskList() {
   return (
     <View style={styles.taskList}>
       <FlatList
-        style={{ gap: 20, display: "flex" }}
         data={tasksToShow}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <TaskCard task={item} />}

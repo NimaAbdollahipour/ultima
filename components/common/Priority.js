@@ -1,13 +1,9 @@
 import { View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/ThemeContext";
-import appColorsDark from "../../styles/darkColors";
 import appColors from "../../styles/colors";
 import styles from "../../styles/styles";
 
-export default function Priority({ value }) {
-  const { darkMode } = useContext(ThemeContext);
+export default function Priority({ value, done }) {
   const stars = [];
   for (let i = 0; i < value; i++) {
     stars.push(i);
@@ -16,9 +12,9 @@ export default function Priority({ value }) {
     <View style={styles.priority}>
       {stars.map((item) => (
         <MaterialIcons
-          name="star-outline"
+          name={done ? "star" : "star-outline"}
           size={24}
-          color={darkMode ? appColorsDark.primary : appColors.primary}
+          color={done ? appColors.primary : appColors.text}
           key={item}
         />
       ))}

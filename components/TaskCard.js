@@ -11,7 +11,6 @@ import styles from "../styles/styles";
 const TaskCard = ({ task }) => {
   const { selectionMode, setSelectionMode } = useContext(AppContext);
   const { selectedTasks, setTasks, setSelectedTasks } = useContext(TaskContext);
-
   const isSelected = () => selectionMode && selectedTasks.includes(task.id);
 
   const toggleDone = () => {
@@ -34,10 +33,11 @@ const TaskCard = ({ task }) => {
     <View
       style={[
         styles.container,
-        isSelected() ? styles.selected : task.done && styles.done,
-        new Date().getTime() > task.date.getTime() &&
-          !task.done &&
-          styles.warning,
+        isSelected()
+          ? styles.selected
+          : task.done
+          ? styles.done
+          : new Date().getTime() > task.date.getTime() && styles.warning,
       ]}
     >
       <TouchableOpacity
@@ -68,7 +68,7 @@ const TaskCard = ({ task }) => {
           <TouchableOpacity onPress={toggleDone}>
             <MaterialIcons
               name={task.done ? "check-box" : "check-box-outline-blank"}
-              color={task.done ? "#007AFF" : "#007AFF"}
+              color={task.done ? appColors.primary : appColors.text}
               size={24}
             />
           </TouchableOpacity>
@@ -84,7 +84,7 @@ const TaskCard = ({ task }) => {
             {task.date.toISOString().split("T")[0]}
           </Text>
           <Text style={styles.weekdayText}>{getWeekday(task.date)}</Text>
-          <Priority value={task.priority} />
+          <Priority value={task.priority} done={task.done} />
         </View>
       </TouchableOpacity>
     </View>

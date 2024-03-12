@@ -6,11 +6,9 @@ import { getTomorrow } from "../utils/dateFuncs";
 import { clearTasks } from "../utils/dataService";
 import TextButton from "./common/TextButton";
 import styles from "../styles/styles";
-import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function Menu() {
   const { setVisibleDate, showDone, setShowDone } = useContext(AppContext);
-  const { darkMode, setDarkMode } = useContext(ThemeContext);
   const { setTasks } = useContext(TaskContext);
 
   function deleteCompleted() {
@@ -47,13 +45,7 @@ export default function Menu() {
         variant="menu"
       />
       <TextButton onPress={clearTasks} text="clean" variant="menu" />
-      <View style={styles.menuButton}>
-        <Switch
-          onValueChange={() => setDarkMode((prev) => !prev)}
-          value={darkMode}
-        />
-        <Text>Dark Mode</Text>
-      </View>
+      <View style={styles.menuButton}></View>
     </View>
   );
 }

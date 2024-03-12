@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { View } from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import { View, Keyboard } from "react-native";
 import { TaskContext } from "../contexts/TaskContext";
 import PriorityPicker from "./PriorityPicker";
 import DatePicker from "./common/DatePicker";
@@ -7,20 +7,36 @@ import { useRouter } from "expo-router";
 import TextButton from "./common/TextButton";
 import Input from "./common/Input";
 import styles from "../styles/styles";
-import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function TaskForm(props) {
   const { setTasks } = useContext(TaskContext);
   const [title, setTitle] = useState(props.task ? props.task.title : "");
   const [date, setDate] = useState(props.task ? props.task.date : new Date());
   const router = useRouter();
-  const { darkMode } = useContext(ThemeContext);
+  const [hide, setHide] = useState(false);
   const [priority, setPriority] = useState(
     props.task ? props.task.priority : 2
   );
   const [description, setDescription] = useState(
     props.task ? props.task.description : ""
   );
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => setHide(true)
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => setHide(false)
+    );
+
+    // Cleanup function to remove listeners
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
   function add() {
     if (title.length > 1) {
       const currentDate = new Date();
@@ -59,7 +75,7 @@ export default function TaskForm(props) {
   }
 
   return (
-    <View style={darkMode ? styles.formContainerDark : styles.formContainer}>
+    <View style={styles.formContainer}>
       <View style={styles.formItem}>
         <Input
           multiline
@@ -69,30 +85,37 @@ export default function TaskForm(props) {
           placeholder="task ..."
         />
       </View>
-      <View style={styles.formItemDouble}>
-        <Input
-          multiline
-          numberOfLines={3}
-          value={description}
-          onChangeText={setDescription}
-          placeholder="description ..."
-        />
-      </View>
+
       <View style={styles.formItem}>
         <PriorityPicker
           selected={priority}
           onChange={(value) => setPriority(value)}
         />
       </View>
-      <View style={styles.formItemDouble}>
-        <DatePicker current={date} onChange={(value) => setDate(value)} />
-      </View>
-      <View style={styles.formItemDouble}>
-        <TextButton
-          onPress={props.task ? edit : add}
-          text={props.task ? "save changes" : "add"}
+      {!hide && (
+        <View style={styles.formItemDouble}>
+          <DatePicker current={date} onChange={(value) => setDate(value)} />
+        </View>
+      )}
+
+      <View style={styles.formItemExpand}>
+        <Input
+          multiline
+          numberOfLines={3}
+          value={description}
+          onChangeText={setDescription}
+          placeholder="description ..."
+          onFocus={() => setHide(true)}
         />
       </View>
+      {!hide && (
+        <View style={styles.formItem}>
+          <TextButton
+            onPress={props.task ? edit : add}
+            text={props.task ? "save changes" : "add"}
+          />
+        </View>
+      )}
     </View>
   );
 }

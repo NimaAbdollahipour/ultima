@@ -1,6 +1,5 @@
 import { TextInput } from "react-native";
-import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../../contexts/ThemeContext";
+import { useEffect, useState } from "react";
 import styles from "../../styles/styles";
 
 export default function Input({
@@ -10,8 +9,8 @@ export default function Input({
   lines,
   multiline,
   placeholder,
+  onFocus,
 }) {
-  const { darkMode } = useContext(ThemeContext);
   const [text, setText] = useState(value ? value : "");
 
   useEffect(() => {
@@ -20,20 +19,13 @@ export default function Input({
 
   return (
     <TextInput
-      style={
-        darkMode
-          ? large
-            ? styles.inputLargeDark
-            : styles.inputDark
-          : large
-          ? styles.inputLarge
-          : styles.input
-      }
+      style={large ? styles.inputLarge : styles.input}
       multiline={multiline}
       lines={lines}
       value={text}
       placeholder={placeholder}
       onChangeText={setText}
+      onPressIn={onFocus}
     />
   );
 }

@@ -22,7 +22,7 @@ export default function TaskOptions() {
 
   function editTask() {
     setSelectionMode(false);
-    () => router.push("task/edit/" + selectedTasks);
+    router.push("task/edit/" + selectedTasks);
   }
 
   function closeSelection() {
@@ -42,11 +42,7 @@ export default function TaskOptions() {
         onPress={editTask}
         disabled={selectedTasks.length !== 1}
       />
-      <IconButton
-        icon="close"
-        onPress={closeSelection}
-        disabled={selectedTasks.length !== 1}
-      />
+      <IconButton icon="close" onPress={closeSelection} />
     </View>
   );
 }

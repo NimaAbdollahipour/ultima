@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 import appColors from "./colors";
-import appColorsDark from "./darkColors";
 import { StatusBar } from "react-native";
 const height = 48;
+const buttonHeight = 36;
 const heightDouble = 96;
 const large = 12;
 const medium = 8;
@@ -21,26 +21,11 @@ export default styles = StyleSheet.create({
     height: height,
     backgroundColor: appColors.input,
   },
-  dateButtonDark: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: height,
-    backgroundColor: appColorsDark.input,
-  },
   text: {
     color: appColors.text,
     fontWeight: "bold",
   },
-  textDark: {
-    color: appColorsDark.text,
-    fontWeight: "bold",
-  },
   datePicker: {
-    display: "flex",
-    gap: small,
-  },
-  datePickerDark: {
     display: "flex",
     gap: small,
   },
@@ -49,22 +34,9 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     gap: small,
   },
-  dateContainerDark: {
-    display: "flex",
-    flexDirection: "row",
-    gap: small,
-  },
   iconButton: {
     padding: medium,
   },
-
-  pickerNormal: {},
-  pickerSelected: {},
-  pickerNormalDark: {},
-  pickerSelectedDark: {},
-  pickerContainer: {},
-  pickerContainerDark: {},
-
   priority: {
     display: "flex",
     justifyContent: "center",
@@ -72,9 +44,6 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     gap: small,
   },
-
-  smallIconButton: {},
-
   textButton: {
     display: "flex",
     justifyContent: "center",
@@ -83,10 +52,9 @@ export default styles = StyleSheet.create({
     padding: medium,
     gap: medium,
     backgroundColor: appColors.primary,
-    height: height,
+    height: buttonHeight,
     borderRadius: small,
   },
-  textButtonDark: {},
   menuButton: {
     display: "flex",
     justifyContent: "flex-start",
@@ -95,17 +63,19 @@ export default styles = StyleSheet.create({
     padding: medium,
     gap: medium,
   },
-  menuButtonDark: {},
   input: {
-    height: height,
     borderColor: appColors.input,
-    paddingHorizontal: small,
     flex: 1,
     borderWidth: thick,
     borderRadius: small,
     paddingHorizontal: medium,
+    backgroundColor: appColors.altBackground,
+    verticalAlign: "top",
+    justifyContent: "flex-start",
+    textAlignVertical: "top",
+    padding: large,
+    height: height,
   },
-  inputDark: {},
   header: {
     display: "flex",
     paddingHorizontal: small,
@@ -116,6 +86,7 @@ export default styles = StyleSheet.create({
     borderBottomWidth: thin,
     borderBottomColor: appColors.border,
     marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: appColors.altBackground,
   },
   heading: {
     fontSize: 18,
@@ -150,25 +121,23 @@ export default styles = StyleSheet.create({
   taskList: {
     flex: 1,
     paddingTop: 3,
+    backgroundColor: appColors.background,
   },
-
   container: {
     display: "flex",
     padding: large,
-    //borderRadius: medium,
     marginBottom: small,
-    backgroundColor: "white",
-    elevation: small,
+    backgroundColor: appColors.altBackground,
     marginHorizontal: small,
     borderLeftWidth: thick,
     borderColor: appColors.border,
   },
   done: {
-    backgroundColor: "lightblue",
+    backgroundColor: appColors.done,
     borderColor: appColors.primary,
   },
   selected: {
-    backgroundColor: "lightgray",
+    backgroundColor: appColors.selected,
     borderColor: appColors.text,
   },
   textContainer: {
@@ -181,6 +150,7 @@ export default styles = StyleSheet.create({
     flex: 1, // Take remaining space in the row
     fontWeight: "bold",
     marginLeft: large, // Added left margin for spacing
+    color: appColors.text,
   },
   infoContainer: {
     flexDirection: "row",
@@ -188,16 +158,17 @@ export default styles = StyleSheet.create({
     marginTop: medium, // Added top margin for separation
   },
   dateText: {
-    color: "gray",
+    color: appColors.fadedText,
   },
   weekdayText: {
-    color: "gray",
+    color: appColors.fadedText,
   },
   formContainer: {
     display: "flex",
     gap: medium,
     flexDirection: "column",
     padding: medium,
+    flex: 1,
   },
   formItem: {
     height: height,
@@ -216,6 +187,7 @@ export default styles = StyleSheet.create({
     borderColor: appColors.input,
     borderWidth: thick,
     borderRadius: small,
+    backgroundColor: appColors.altBackground,
   },
   pickerSelected: {
     flex: 1,
@@ -238,9 +210,7 @@ export default styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     height: "100%",
-    borderColor: appColors.altBackground,
-    borderRadius: small,
-    borderWidth: 1,
+    backgroundColor: appColors.background,
   },
   datePicker: {
     flex: 1,
@@ -251,6 +221,7 @@ export default styles = StyleSheet.create({
     borderWidth: thick,
     borderRadius: small,
     gap: small,
+    backgroundColor: appColors.altBackground,
   },
   dateContainer: {
     flex: 1,
@@ -269,8 +240,9 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
   },
   details: {
-    padding: medium,
+    padding: large,
     gap: medium,
+    flex: 1,
   },
   label: {
     fontWeight: "bold",
@@ -279,5 +251,12 @@ export default styles = StyleSheet.create({
   },
   smallIconButton: {
     padding: medium,
+  },
+  taskViewContent: {
+    flex: 1,
+    gap: large,
+  },
+  formItemExpand: {
+    flex: 1,
   },
 });

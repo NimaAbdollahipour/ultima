@@ -22,10 +22,18 @@ export default function TaskViewer() {
 
   return (
     <View style={styles.details}>
-      <LabelValue label="Title" value={task.title} />
-      <LabelValue label="Description" value={task.description} />
-      <LabelValue label="Priority" value={priorityValues[task.priority - 1]} />
-      <LabelValue label="Date" value={task.date.toISOString().split("T")[0]} />
+      <View style={styles.taskViewContent}>
+        <LabelValue label="Title" value={task.title} />
+        <LabelValue label="Description" value={task.description} />
+        <LabelValue
+          label="Priority"
+          value={priorityValues[task.priority - 1]}
+        />
+        <LabelValue
+          label="Date"
+          value={task.date.toISOString().split("T")[0]}
+        />
+      </View>
       <TextButton text="delete" onPress={deleteTask} />
       <TextButton text="edit" onPress={() => router.push(`/task/edit/${id}`)} />
     </View>

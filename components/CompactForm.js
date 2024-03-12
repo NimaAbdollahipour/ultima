@@ -4,7 +4,6 @@ import { TaskContext } from "../contexts/TaskContext";
 import styles from "../styles/styles";
 import { AppContext } from "../contexts/AppContext";
 import { saveTasks } from "../utils/dataService";
-import IconButton from "./common/IconButton";
 import Input from "./common/Input";
 import SmallIconButton from "./common/SmallIconButton";
 
@@ -28,8 +27,8 @@ export default function CompactForm() {
         priority: 2,
       };
       setTasks((previuos) => [newTask, ...previuos]);
-      setTitle("");
       saveTasks(tasks);
+      setTitle("");
     }
   }
 

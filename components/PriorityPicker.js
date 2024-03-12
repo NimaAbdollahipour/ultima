@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import styles from "../styles/styles";
+import appColors from "../styles/colors";
 const PriorityPicker = (props) => {
   const [priority, setPriority] = useState(props.priority ? props.priority : 2);
   useEffect(() => {
@@ -15,19 +16,25 @@ const PriorityPicker = (props) => {
         onPress={() => setPriority(1)}
         style={priority === 1 ? styles.pickerSelected : styles.pickerButton}
       >
-        <Text style={priority === 1 && { color: "white" }}>low</Text>
+        <Text style={priority === 1 && { color: appColors.altBackground }}>
+          low
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setPriority(2)}
         style={priority === 2 ? styles.pickerSelected : styles.pickerButton}
       >
-        <Text style={priority === 2 && { color: "white" }}>med</Text>
+        <Text style={priority === 2 && { color: appColors.altBackground }}>
+          med
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setPriority(3)}
         style={priority === 3 ? styles.pickerSelected : styles.pickerButton}
       >
-        <Text style={priority === 3 && { color: "white" }}>high</Text>
+        <Text style={priority === 3 && { color: appColors.altBackground }}>
+          high
+        </Text>
       </TouchableOpacity>
     </View>
   );
